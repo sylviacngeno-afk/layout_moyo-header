@@ -1,3 +1,107 @@
-body {
+/* ==========================================================================
+   CSS Variables & Reset
+   ========================================================================== */
+:root {
+  --color-primary: #00a8ff; /* Adjust if your exact Figma blue shade differs */
+  --color-text: #000;
+  --color-text-hover: #00a8ff;
+  --font-family-base: 'Roboto', sans-serif;
+  --nav-height: 60px; /* Set from your Figma design for nav links height */
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Header Component
+   ========================================================================== */
+.header {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Optional subtled border/shadow */
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px; /* Adjust horizontal padding to match Figma container margins */
+}
+
+.header__logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  display: block;
+  height: auto;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.nav__list {
+  display: flex;
+  list-style: none;
+}
+
+/* Margins instead of gap (Gap is forbidden for compatibility tests) */
+.nav__item {
+  margin-right: 24px; /* Adjust to match the distance between nav items in Figma */
+}
+
+.nav__item:last-child {
+  margin-right: 0; /* Ensures no trailing margin after the last list item */
+}
+
+.nav__link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: var(
+    --nav-height
+  ); /* Nav links dictate the header height constraint */
+
+  font-size: 14px;
+  color: var(--color-text);
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: var(--color-text-hover);
+}
+
+/* Active Link Styling */
+.nav__link.is-active {
+  color: var(--color-primary);
+}
+
+.nav__link.is-active::after {
+  content: '';
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px; /* Thickness of the active indicator line */
+  border-radius: 2px 2px 0 0;
+
+  background-color: var(--color-primary);
 }
